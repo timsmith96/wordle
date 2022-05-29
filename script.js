@@ -13058,6 +13058,19 @@ const checkWord = () => {
       .join('')
       .toLowerCase();
     if (validWords.includes(word)) {
+      if (currentRow === 5) {
+        keys.forEach((key) => {
+          key.style.pointerEvents = 'none';
+        });
+        cells.forEach((cell) => {
+          cell.style.pointerEvents = 'none';
+        });
+        setTimeout(() => {
+          message.style.visibility = 'visible';
+          message.textContent = `Uh oh! The word was ${correctWord}`;
+          newGame.style.visibility = 'visible';
+        }, 3000);
+      }
       gameGrid[currentRow].forEach((cell) => {
         cell.style.pointerEvents = 'none';
       });
