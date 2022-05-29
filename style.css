@@ -194,25 +194,35 @@ body {
     margin-top: 20px;
   }
 
-  .keyboard {
+  /* .keyboard {
     position: fixed;
     width: 100%;
     bottom: 10px;
     padding: 0 10px;
-  }
+  } */
 
-  .key-top-row,
+  /* .key-top-row,
   .key-middle-row,
   .key-bottom-row {
     display: flex;
     gap: 7px;
     justify-content: center;
     margin-bottom: 8px;
-  }
+  } */
 
   .key {
-    height: 60px;
-    width: 40px;
+    height: 9vh;
+    width: 8vw;
+    background-color: #d3d6da;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  .enter-key,
+  .del-key {
+    height: 9vh;
+    width: 13vw;
     background-color: #d3d6da;
     border: none;
     border-radius: 4px;
@@ -227,8 +237,8 @@ body {
   }
 
   .key {
-    height: 45px;
-    width: 25px;
+    height: 7vh;
+    width: 8vw;
     background-color: #d3d6da;
     border: none;
     border-radius: 4px;
@@ -237,8 +247,8 @@ body {
 
   .enter-key,
   .del-key {
-    height: 45px;
-    width: 50px;
+    height: 7vh;
+    width: 12vw;
     background-color: #d3d6da;
     border: none;
     border-radius: 4px;
