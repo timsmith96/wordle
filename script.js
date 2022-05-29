@@ -13008,7 +13008,7 @@ let gameGrid = {
   4: cells.slice(20, 25),
   5: cells.slice(25, 30),
 };
-let correctWord = updateWord();
+let correctWord = 'anger';
 console.log(correctWord);
 // FUNCTIONS
 const selectWord = () => {
@@ -13122,7 +13122,9 @@ const compareGuess = (guessedWord, correctWord) => {
     } else if (Object.values(obj).includes(letter)) {
       console.log('hi');
       finalObj[getKeyByValue(obj, letter)] = 'B';
-      finalObj[index] = 'C';
+      if (!finalObj[index]) {
+        finalObj[index] = 'C';
+      }
     } else if (!finalObj[index]) {
       finalObj[index] = 'C';
     }
