@@ -10,6 +10,29 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
 .navbar {
   height: 10vh;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -45,6 +68,11 @@ body {
   align-items: center;
   font-weight: bold;
   font-size: 2rem;
+  transition: all 1s;
+}
+
+.rotating-parent {
+  transition: all 1s;
 }
 
 .keyboard {
@@ -88,4 +116,186 @@ body {
 .enter-key:hover,
 .del-key:hover {
   cursor: pointer;
+}
+
+.shake-class {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  background-color: aqua;
+}
+
+.message-container {
+  text-align: center;
+  margin: 40px auto;
+  border: 1px solid;
+  color: #fff;
+  background: #000;
+  padding: 10px 5px;
+  width: 300px;
+  border-radius: 5px;
+  font-weight: bold;
+  visibility: hidden;
+}
+
+.new-game {
+  padding: 20px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: #000;
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  visibility: hidden;
+}
+
+.new-game:hover {
+  cursor: pointer;
+  background-color: #787c7e;
+}
+
+@media screen and (max-width: 700px) {
+  .guessing-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    gap: 5px;
+    margin: 0px auto;
+    width: 320px;
+  }
+
+  .grid-cell {
+    height: 60px;
+    width: 60px;
+    border: 2px solid #d3d6da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    transition: all 1s;
+  }
+
+  .message-container {
+    text-align: center;
+    margin: 20px auto;
+    border: 1px solid;
+    color: #fff;
+    background: #000;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    font-weight: bold;
+    visibility: hidden;
+  }
+
+  .new-game {
+    margin-top: 20px;
+  }
+
+  .keyboard {
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    padding: 0 10px;
+  }
+
+  .key-top-row,
+  .key-middle-row,
+  .key-bottom-row {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .key {
+    height: 60px;
+    width: 40px;
+    background-color: #d3d6da;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-height: 750px) {
+  .guessing-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    gap: 1px;
+    margin: 0px auto;
+    width: 250px;
+  }
+
+  .grid-cell {
+    height: 50px;
+    width: 50px;
+    border: 2px solid #d3d6da;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    transition: all 1s;
+  }
+
+  .message-container {
+    text-align: center;
+    margin: 20px auto;
+    border: 1px solid;
+    color: #fff;
+    background: #000;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    font-weight: bold;
+    visibility: hidden;
+  }
+
+  .keyboard {
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+    padding: 0 10px;
+  }
+
+  .key-top-row,
+  .key-middle-row,
+  .key-bottom-row {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .key {
+    height: 40px;
+    width: 20px;
+    background-color: #d3d6da;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  .enter-key,
+  .del-key {
+    height: 40px;
+    width: 60px;
+    background-color: #d3d6da;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+
+  .new-game {
+    padding: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: #000;
+    border-radius: 5px;
+    color: #fff;
+  }
 }
