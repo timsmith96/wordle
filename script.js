@@ -13009,7 +13009,7 @@ let gameGrid = {
   5: cells.slice(25, 30),
 };
 let correctWord = updateWord();
-
+console.log(correctWord);
 // FUNCTIONS
 const selectWord = () => {
   return validWords[Math.floor(Math.random() * validWords.length)];
@@ -13114,16 +13114,20 @@ const compareGuess = (guessedWord, correctWord) => {
       obj[index] = letter;
     }
   });
+  console.log(obj);
   correctWord.split('').forEach((letter, index) => {
     if (letter === obj[index]) {
       finalObj[index] = 'A';
+      delete obj[index];
     } else if (Object.values(obj).includes(letter)) {
+      console.log('hi');
       finalObj[getKeyByValue(obj, letter)] = 'B';
       finalObj[index] = 'C';
     } else if (!finalObj[index]) {
       finalObj[index] = 'C';
     }
   });
+  console.log(finalObj);
   return finalObj;
 };
 
@@ -13170,6 +13174,10 @@ const clearGrid = () => {
     cell.style.border = '2px solid #d3d6da';
     cell.style.backgroundColor = '#fff';
     cell.style.color = '#000';
+    cell.style.pointerEvents = 'auto';
+  });
+  keys.forEach((key) => {
+    key.style.pointerEvents = 'auto';
   });
   currentRow = 0;
   gameGrid = {

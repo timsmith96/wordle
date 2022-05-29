@@ -191,27 +191,12 @@ body {
   }
 
   .new-game {
-    margin-top: 20px;
+    margin-top: 15px;
+    padding: 10px 5px;
   }
 
-  /* .keyboard {
-    position: fixed;
-    width: 100%;
-    bottom: 10px;
-    padding: 0 10px;
-  } */
-
-  /* .key-top-row,
-  .key-middle-row,
-  .key-bottom-row {
-    display: flex;
-    gap: 7px;
-    justify-content: center;
-    margin-bottom: 8px;
-  } */
-
   .key {
-    height: 9vh;
+    height: 8vh;
     width: 8vw;
     background-color: #d3d6da;
     border: none;
@@ -221,7 +206,7 @@ body {
 
   .enter-key,
   .del-key {
-    height: 9vh;
+    height: 8vh;
     width: 13vw;
     background-color: #d3d6da;
     border: none;
