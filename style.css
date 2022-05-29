@@ -220,7 +220,7 @@ body {
   }
 }
 
-@media screen and (max-height: 750px) {
+/* @media screen and (max-height: 750px) {
   .guessing-grid {
     display: grid;
     grid-template-columns: repeat(5, 50px);
@@ -298,4 +298,4 @@ body {
     border-radius: 5px;
     color: #fff;
   }
-}
+} */
