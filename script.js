@@ -13060,8 +13060,20 @@ const checkWord = () => {
       .map((cell) => cell.textContent)
       .join('')
       .toLowerCase();
+    if (word === correctWord) {
+      cells.forEach((cell) => {
+        cell.style.pointerEvents = 'none';
+      });
+      keys.forEach((key) => {
+        key.style.pointerEvents = 'none';
+      });
+      setTimeout(() => {
+        message.textContent = `Well done! You got it! ${word.toUpperCase()}`;
+        modalContainer.classList.add('show');
+      }, 2500);
+    }
     if (validWords.includes(word)) {
-      if (currentRow === 5) {
+      if (currentRow === 5 && word !== correctWord) {
         keys.forEach((key) => {
           key.style.pointerEvents = 'none';
         });
@@ -13077,18 +13089,6 @@ const checkWord = () => {
         cell.style.pointerEvents = 'none';
       });
       updateTiles(compareGuess(word, correctWord));
-      if (word === correctWord) {
-        cells.forEach((cell) => {
-          cell.style.pointerEvents = 'none';
-        });
-        keys.forEach((key) => {
-          key.style.pointerEvents = 'none';
-        });
-        setTimeout(() => {
-          message.textContent = `Well done! You got it! ${word.toUpperCase()}`;
-          modalContainer.classList.add('show');
-        }, 2500);
-      }
       setTimeout(() => {
         currentRow++;
       }, 3000);
