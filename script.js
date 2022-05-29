@@ -13,6 +13,23 @@ let words = [
   'cover',
   'cream',
   'dance',
+  'north',
+  'peace',
+  'match',
+  'brain',
+  'error',
+  'floor',
+  'rugby',
+  'scope',
+  'sheep',
+  'taste',
+  'ought',
+  'admit',
+  'waste',
+  'watch',
+  'stick',
+  'worry',
+  'lucky',
 ];
 let validWords = `women
 nikau
