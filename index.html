@@ -19,7 +19,15 @@
       <h1>Turdle</h1>
     </nav>
     <main>
-      <p class="message-container">Well done! You got it.</p>
+      <div class="modal-container" id="modal-container">
+        <div class="modal">
+          <p class="message-container">Well done! You got it.</p>
+          <button class="new-game">New word</button>
+          <button id="close">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+      </div>
       <div class="guessing-grid">
         <div class="rotating-parent parent-1">
           <div class="grid-cell cell-1" data-cell="0"></div>
@@ -112,7 +120,7 @@
           <div class="grid-cell cell-30" data-cell="4"></div>
         </div>
       </div>
-      <button class="new-game">New word</button>
+
       <div class="keyboard">
         <div class="key-top-row">
           <button class="key" data-letter="Q">Q</button>

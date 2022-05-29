@@ -55,7 +55,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 65px);
   gap: 5px;
-  margin: 30px auto;
+  margin: 110px auto;
   width: 345px;
 }
 
@@ -79,6 +79,7 @@ body {
   position: fixed;
   width: 100%;
   bottom: 10px;
+  padding: 0px 10px;
 }
 
 .key-top-row,
@@ -125,15 +126,13 @@ body {
 
 .message-container {
   text-align: center;
-  margin: 40px auto;
   border: 1px solid;
   color: #fff;
   background: #000;
   padding: 10px 5px;
-  width: 300px;
   border-radius: 5px;
   font-weight: bold;
-  visibility: hidden;
+  margin-bottom: 20px;
 }
 
 .new-game {
@@ -148,7 +147,6 @@ body {
   text-align: center;
   display: block;
   margin: 0 auto;
-  visibility: hidden;
 }
 
 .new-game:hover {
@@ -156,93 +154,97 @@ body {
   background-color: #787c7e;
 }
 
-@media screen and (max-width: 700px) {
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal {
+  background-color: #fff;
+  width: 400px;
+  max-width: 90%;
+  padding: 30px 50px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+}
+
+form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+form .input {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #94a3b8;
+  font-size: 1rem;
+  padding-left: 4px;
+}
+
+form input:focus {
+  outline: none;
+  border: 1px solid #334155;
+}
+
+label {
+  text-align: left;
+}
+
+.submit-btn {
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background-color: #334155;
+  color: #f1f5f9;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.submit-btn:hover {
+  border: 1px solid #334155;
+  background-color: #f1f5f9;
+  color: #334155;
+  cursor: pointer;
+}
+
+#close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: none;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-height: 800px) {
   .guessing-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 60px);
-    gap: 5px;
-    margin: 0px auto;
-    width: 320px;
+    margin-top: 10px;
+    grid-template-columns: repeat(5, 50px);
+    width: 270px;
   }
 
   .grid-cell {
-    height: 60px;
-    width: 60px;
-    border: 2px solid #d3d6da;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 2rem;
-    transition: all 1s;
-  }
-
-  .message-container {
-    text-align: center;
-    margin: 20px auto;
-    border: 1px solid;
-    color: #fff;
-    background: #000;
-    padding: 10px;
-    width: 300px;
-    border-radius: 5px;
-    font-weight: bold;
-    visibility: hidden;
-  }
-
-  .new-game {
-    margin-top: 15px;
-    padding: 10px 5px;
-  }
-
-  .key {
-    height: 8vh;
-    width: 8vw;
-    background-color: #d3d6da;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-
-  .enter-key,
-  .del-key {
-    height: 8vh;
-    width: 13vw;
-    background-color: #d3d6da;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-}
-
-@media screen and (max-height: 750px) {
-  .message-container {
-    margin: 0 auto;
-    padding: 2px;
-  }
-
-  .key {
-    height: 7vh;
-    width: 8vw;
-    background-color: #d3d6da;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-
-  .enter-key,
-  .del-key {
-    height: 7vh;
-    width: 12vw;
-    background-color: #d3d6da;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-
-  .new-game {
-    padding: 1px 5px;
-    font-size: 0.75rem;
-    margin: 2px auto;
+    height: 50px;
+    width: 50px;
   }
 }

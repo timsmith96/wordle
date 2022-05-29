@@ -12982,15 +12982,18 @@ whore
 pussy`;
 validWords = validWords.replace(/\s/g, ' ');
 validWords = validWords.split(' ');
-const keys = document.querySelectorAll('.key');
+const closeBtn = document.querySelector('#close');
+let keys = document.querySelectorAll('.key');
 const message = document.querySelector('.message-container');
 const newGame = document.querySelector('.new-game');
 let cells = document.querySelectorAll('.grid-cell');
 const enterKey = document.querySelector('.enter-key');
 const deleteKey = document.querySelector('.del-key');
 let rotators = document.querySelectorAll('.rotating-parent');
+const modalContainer = document.querySelector('.modal-container');
 rotators = Array.from(rotators);
 cells = Array.from(cells);
+keys = Array.from(keys);
 let currentRow = 0;
 const rotatorsGrid = {
   0: rotators.slice(0, 5),
@@ -13008,7 +13011,7 @@ let gameGrid = {
   4: cells.slice(20, 25),
   5: cells.slice(25, 30),
 };
-let correctWord = 'anger';
+let correctWord = updateWord();
 console.log(correctWord);
 // FUNCTIONS
 const selectWord = () => {
@@ -13066,9 +13069,8 @@ const checkWord = () => {
           cell.style.pointerEvents = 'none';
         });
         setTimeout(() => {
-          message.style.visibility = 'visible';
           message.textContent = `Uh oh! The word was ${correctWord}`;
-          newGame.style.visibility = 'visible';
+          modalContainer.classList.add('show');
         }, 3000);
       }
       gameGrid[currentRow].forEach((cell) => {
@@ -13083,8 +13085,8 @@ const checkWord = () => {
           key.style.pointerEvents = 'none';
         });
         setTimeout(() => {
-          message.style.visibility = 'visible';
-          newGame.style.visibility = 'visible';
+          message.textContent = `Well done! You got it! ${word.toUpperCase()}`;
+          modalContainer.classList.add('show');
         }, 2500);
       }
       setTimeout(() => {
@@ -13107,29 +13109,57 @@ const checkWord = () => {
 };
 
 const compareGuess = (guessedWord, correctWord) => {
-  let obj = {};
-  let finalObj = {};
-  guessedWord.split('').forEach((letter, index) => {
-    if (correctWord.split('').includes(letter)) {
-      obj[index] = letter;
-    }
-  });
-  console.log(obj);
-  correctWord.split('').forEach((letter, index) => {
-    if (letter === obj[index]) {
+  let arr = [];
+  let finalObj = {
+    0: '',
+    1: '',
+    2: '',
+    3: '',
+    4: '',
+  };
+  guessedWord = guessedWord.split('');
+  correctWord = correctWord.split('');
+  guessedWord.forEach((letter, index) => {
+    if (letter === correctWord[index]) {
       finalObj[index] = 'A';
-      delete obj[index];
-    } else if (Object.values(obj).includes(letter)) {
-      console.log('hi');
-      finalObj[getKeyByValue(obj, letter)] = 'B';
-      if (!finalObj[index]) {
-        finalObj[index] = 'C';
-      }
-    } else if (!finalObj[index]) {
-      finalObj[index] = 'C';
+      setTimeout(() => {
+        keys.find(
+          (x) => x.textContent === letter.toUpperCase()
+        ).style.backgroundColor = '#6aaa64';
+        keys.find((x) => x.textContent === letter.toUpperCase()).style.color =
+          '#fff';
+      }, 2700);
+      arr.push(letter);
     }
   });
-  console.log(finalObj);
+  guessedWord.forEach((letter, index) => {
+    if (!correctWord.includes(letter)) {
+      setTimeout(() => {
+        keys.find(
+          (x) => x.textContent === letter.toUpperCase()
+        ).style.backgroundColor = '#787c7e';
+        keys.find((x) => x.textContent === letter.toUpperCase()).style.color =
+          '#fff';
+      }, 2700);
+      finalObj[index] = 'C';
+      arr.push(letter);
+    }
+  });
+  guessedWord.forEach((letter, index) => {
+    let letterCount = correctWord.filter((x) => x === letter).length;
+    let letterCount2 = arr.filter((y) => y === letter).length;
+    if (letterCount2 < letterCount && !finalObj[index]) {
+      setTimeout(() => {
+        let found = keys.find((x) => x.textContent === letter.toUpperCase());
+        if (found.style.backgroundColor !== 'rgb(106, 170, 100)') {
+          found.style.backgroundColor = 'rgb(201, 180, 88)';
+          found.style.color = '#fff';
+        }
+      }, 2700);
+      finalObj[index] = 'B';
+      arr.push(letter);
+    }
+  });
   return finalObj;
 };
 
@@ -13190,12 +13220,15 @@ const clearGrid = () => {
     4: cells.slice(20, 25),
     5: cells.slice(25, 30),
   };
-  message.style.visibility = 'hidden';
-  newGame.style.visibility = 'hidden';
+  modalContainer.classList.remove('show');
   let index = words.indexOf(correctWord);
   words.splice(index, 1);
   console.log(words);
   correctWord = updateWord();
+};
+
+const updateKeys = (guess) => {
+  guess.split('').forEach((letter) => {});
 };
 
 // EVENT LISTENERS
@@ -13220,3 +13253,7 @@ deleteKey.addEventListener('click', deleteCell);
 enterKey.addEventListener('click', checkWord);
 
 newGame.addEventListener('click', clearGrid);
+
+closeBtn.addEventListener('click', () => {
+  modalContainer.classList.remove('show');
+});
