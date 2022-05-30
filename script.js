@@ -169,6 +169,7 @@ sects
 giant
 iftar
 hayed
+helen
 elfed
 likes
 sword
@@ -13011,7 +13012,7 @@ let gameGrid = {
   4: cells.slice(20, 25),
   5: cells.slice(25, 30),
 };
-let correctWord = updateWord();
+let correctWord = 'helen';
 console.log(correctWord);
 // FUNCTIONS
 const selectWord = () => {
@@ -13052,6 +13053,23 @@ const deleteCell = () => {
   }
 };
 
+const disableAllKeys = () => {
+  cells.forEach((cell) => {
+    cell.style.pointerEvents = 'none';
+  });
+  keys.forEach((key) => {
+    key.style.pointerEvents = 'none';
+  });
+  enterKey.style.pointerEvents = 'none';
+  deleteKey.style.pointerEvents = 'none';
+  console.log('hi');
+};
+
+const disableEnterKeys = () => {
+  enterKey.style.pointerEvents = 'none';
+  deleteKey.style.pointerEvents = 'none';
+};
+
 const checkWord = () => {
   let filledCells = validate();
   if (filledCells % 5 === 0 && filledCells !== 0) {
@@ -13061,12 +13079,13 @@ const checkWord = () => {
       .join('')
       .toLowerCase();
     if (word === correctWord) {
-      cells.forEach((cell) => {
-        cell.style.pointerEvents = 'none';
-      });
-      keys.forEach((key) => {
-        key.style.pointerEvents = 'none';
-      });
+      disableAllKeys();
+      // cells.forEach((cell) => {
+      //   cell.style.pointerEvents = 'none';
+      // });
+      // keys.forEach((key) => {
+      //   key.style.pointerEvents = 'none';
+      // });
       setTimeout(() => {
         message.textContent = `Well done! You got it! ${word.toUpperCase()}`;
         modalContainer.classList.add('show');
@@ -13074,12 +13093,13 @@ const checkWord = () => {
     }
     if (validWords.includes(word)) {
       if (currentRow === 5 && word !== correctWord) {
-        keys.forEach((key) => {
-          key.style.pointerEvents = 'none';
-        });
-        cells.forEach((cell) => {
-          cell.style.pointerEvents = 'none';
-        });
+        disableAllKeys();
+        // keys.forEach((key) => {
+        //   key.style.pointerEvents = 'none';
+        // });
+        // cells.forEach((cell) => {
+        //   cell.style.pointerEvents = 'none';
+        // });
         setTimeout(() => {
           message.textContent = `Uh oh! The word was ${correctWord}`;
           modalContainer.classList.add('show');
@@ -13088,8 +13108,11 @@ const checkWord = () => {
       gameGrid[currentRow].forEach((cell) => {
         cell.style.pointerEvents = 'none';
       });
+      disableEnterKeys();
       updateTiles(compareGuess(word, correctWord));
       setTimeout(() => {
+        enterKey.style.pointerEvents = 'auto';
+        deleteKey.style.pointerEvents = 'auto';
         currentRow++;
       }, 3000);
     } else {
@@ -13213,6 +13236,8 @@ const clearGrid = () => {
     key.style.backgroundColor = '#d3d6da';
     key.style.color = '#000';
   });
+  enterKey.style.pointerEvents = 'auto';
+  deleteKey.style.pointerEvents = 'auto';
   currentRow = 0;
   gameGrid = {
     0: cells.slice(0, 5),
