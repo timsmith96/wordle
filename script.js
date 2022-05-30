@@ -13012,7 +13012,7 @@ let gameGrid = {
   4: cells.slice(20, 25),
   5: cells.slice(25, 30),
 };
-let correctWord = selectWord();
+let correctWord = updateWord();
 console.log(correctWord);
 // FUNCTIONS
 const selectWord = () => {
