@@ -13210,6 +13210,8 @@ const clearGrid = () => {
   });
   keys.forEach((key) => {
     key.style.pointerEvents = 'auto';
+    key.style.backgroundColor = '#d3d6da';
+    key.style.color = '#000';
   });
   currentRow = 0;
   gameGrid = {
