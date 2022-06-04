@@ -61,12 +61,12 @@ let words = [
   'funny',
   'legal',
   'leave',
-  'lewis',
   'judge',
   'magic',
   'mixed',
   'minus',
   'mayor',
+  'beans',
 ];
 let validWords = `women
 nikau
